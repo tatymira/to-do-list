@@ -15,19 +15,25 @@ namespace ToDoList.Service
         {
             _itemRepository = itemRepository;
         }
-        public List<Item> GetItems()
+
+        public List<Item> GetAll()
         {
-            return _itemRepository.GetItems();
+            return _itemRepository.GetAll();
         }
 
-        public List<Item> PostItem(Item item)
+        public void Post(Item item)
         {
-            return _itemRepository.PostItem(item);
-        }
-        public List<Item> DeleteItem(int idItem)
-        {
-            return _itemRepository.DeleteItem(idItem);
+            _itemRepository.Post(item);
         }
 
+        public void Uptade(Item item)
+        {
+            _itemRepository.Uptade(item);
+        }
+
+        public void Delete(int idItem)
+        {
+            _itemRepository.Delete(idItem);
+        }
     }
 }

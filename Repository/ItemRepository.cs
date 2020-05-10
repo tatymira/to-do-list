@@ -19,20 +19,34 @@ namespace ToDoList.Repository
         }
         protected ISession _session { get { return _unitOfWork.CurrentSession; } }
 
-        public List<Item> GetItems()
+        
+        public List<Item> GetAll()
         {
-            var list = _session.Query<Item>().OrderBy(x => x.Name).ToList();
-            return list;
+            return _session.Query<Item>().OrderBy(x => x.Name).ToList();
         }
 
-        public List<Item> DeleteItem(int idItem)
+        public void Post(Item item)
         {
-            throw new NotImplementedException();
+            _unitOfWork.BeginTransaction();
+            _session.Save(item);
+            _unitOfWork.Execute();
         }
-        
-        public List<Item> PostItem(Item item)
+
+        public void Uptade(Item item)
         {
-            throw new NotImplementedException();
+            _unitOfWork.BeginTransaction();
+            _session.Update(item);
+            _unitOfWork.Execute();
         }
+
+        public void Delete(int idItem)
+        {
+            var toRemove = _session.Query<Item>().FirstOrDefault(x => x.Id == idItem);
+
+            _unitOfWork.BeginTransaction();
+            _session.Delete(toRemove);
+            _unitOfWork.Execute();
+        }
+
     }    
 }

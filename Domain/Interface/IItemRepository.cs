@@ -8,8 +8,9 @@ namespace ToDoList.Domain.Interface
 {
     public interface IItemRepository
     {
-        List<Item> GetItems();
-        List<Item> PostItem(Item item);
-        List<Item> DeleteItem(int idItem);
+        List<Item> GetAll();
+        void Post(Item item);
+        void Uptade(Item item);
+        void Delete(int idItem);
     }
 }

@@ -14,30 +14,36 @@ namespace ToDoList.Controllers
             _itemService = itemService;
         }
 
-        public ToDoListController()
-        {
-
-        }
 
         [HttpGet]
         [Route("Get")]
         public List<Item> Get()
         {
-            return _itemService.GetItems();
+            return _itemService.GetAll();
         }
-        
-        //[HttpPost]
-        //[Route("Post")]
-        //public List<Item> Post(Item item)
-        //{
-        //    return _itemService.PostItem(item);
-        //}
 
-        //[HttpDelete]
-        //[Route("Delete")]
-        //public List<Item> Delete(int idItem)
-        //{
-        //    return _itemService.DeleteItem(idItem);
-        //}
+        [HttpPost]
+        [Route("Post")]
+        public List<Item> Post(Item item)
+        {
+            _itemService.Post(item);
+            return Get();
+        }
+
+        [HttpPost]
+        [Route("Uptade")]
+        public List<Item> Uptade(Item item)
+        {
+            _itemService.Uptade(item);
+            return Get();
+        }
+
+        [HttpDelete]
+        [Route("Delete")]
+        public List<Item> Delete(int idItem)
+        {
+            _itemService.Delete(idItem);
+            return Get();
+        }
     }
 }

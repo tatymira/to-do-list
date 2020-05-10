@@ -11,9 +11,11 @@ namespace ToDoList.Repository
     {
         public ItemMap()
         {
-            Id(c => c.Id);
-            Map(c => c.Name);
-            Map(c => c.Done);
+            Id(c => c.Id).Column("id").GeneratedBy.Identity();
+            Map(c => c.Name).Column("name");
+            Map(c => c.Done).Column("done");
+
+            Table("item");
         }
     }
 }
